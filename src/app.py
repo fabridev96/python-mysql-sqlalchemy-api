@@ -32,17 +32,6 @@ tareas_schema = TareaSchema(many=True)
 def index():
     return "Hola, bienvenide a la API Python, Flask, MySQL, SQLAlchemy"
 
-"""
-@app.route('/tareas', methods=['POST'])
-def crear_tarea():
-    titulo = request.json['titulo']
-    descripcion = request.json['descripcion']
-    nueva_tarea = Tareas(titulo, descripcion)
-    db.session.add(nueva_tarea)
-    db.session.commit()
-    return tarea_schema.jsonify(nueva_tarea)
-"""
-
 @app.route('/tareas', methods=['POST'])
 def crear_tarea():
 
@@ -66,19 +55,6 @@ def obtener_tareas():
     tareas = Tareas.query.all()
     resultado = tareas_schema.dump(tareas)
     return jsonify(resultado)
-
-"""
-@app.route('/tareas/<id>', methods=['PUT'])
-def actualizar_tarea(id):
-    return id
-    tarea = Tareas.query.get(id)
-    titulo = request.json['titulo']
-    descripcion = request.json['descripcion']
-    tarea.titulo = titulo
-    tarea.descripcion = descripcion
-    db.session.commit()
-    return tarea_schema.jsonify(tarea)
-"""
 
 @app.route('/tareas/<id>', methods=['PUT'])
 def actualizar_tarea(id):
